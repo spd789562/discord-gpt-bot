@@ -6,7 +6,9 @@
     "start": "node --experimental-fetch dist",
     "build": "swc ./src -d dist"
   },
-  "keywords": [],
+  "keywords": [
+    "discord", "discord.js-v14", "langchain", "chatgpt", "openai", "googleapis"
+  ],
   "author": "spd789562",
   "license": "MIT",
   "description": "",
