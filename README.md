@@ -69,6 +69,8 @@ docker compose up
 
 After starting the bot, inviting the bot with `adminstration` permission and typing `!register` in any channel to register slash command
 
+![registercommand](./docs/registercommand.png)
+
 ## Notes
 - Be careful using search feature, it might take more token for reading searching result(more cost).
 - This project default using gpt-4 model, you can change that in `src/structures/chatgpt.ts` and `src/structures/langchain.ts` both has `private model = 'gpt-4'`.
