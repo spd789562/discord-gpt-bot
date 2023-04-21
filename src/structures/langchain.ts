@@ -17,7 +17,7 @@ import Config from '@/config';
 type onProgress = (arg: { text: string }) => void;
 
 class LangChainChatGPTAPI {
-  private modal = 'gpt-4';
+  private model = 'gpt-4';
 
   tools = [new GoogleSerpAPI()];
 
@@ -113,7 +113,7 @@ class LangChainChatGPTAPI {
     return new ChatOpenAI({
       temperature: 0.8,
       openAIApiKey: Config.OpenAIKey,
-      modelName: this.modal,
+      modelName: this.model,
       callbackManager,
       streaming: true,
     });

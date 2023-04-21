@@ -31,7 +31,7 @@ class ChatGPT {
   private api?: ChatGPTAPI = undefined;
   private searchGptApi: LangChainChatGPTAPI = new LangChainChatGPTAPI();
   private openai: OpenAIApi = new OpenAIApi(configuration);
-  private modal = 'gpt-4';
+  private model = 'gpt-4';
   private _systemMessage = defaultSystemMessage;
   public store: Store<GPTSetting> = new Store<GPTSetting>();
   public readonly defaultSystemMessage = defaultSystemMessage;
@@ -45,7 +45,7 @@ class ChatGPT {
       this.api = new ChatGPTAPI({
         apiKey: Config.OpenAIKey,
         completionParams: {
-          model: this.modal,
+          model: this.model,
         },
       });
 
