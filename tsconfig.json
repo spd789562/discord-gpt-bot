@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2021" ,
+    "module": "commonjs" ,
+    // "rootDir": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
+    "resolveJsonModule": true ,
+    "outDir": "./dist" ,
+    "skipLibCheck": true 
+  },
+  "include": ["src"]
+}

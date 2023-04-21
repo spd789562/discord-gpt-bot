@@ -1,0 +1,20 @@
+{
+    "jsc": {
+        "target": "es2019",
+        "parser": {
+            "syntax": "typescript",
+            "decoration": true,
+            "dynamicImport": true
+        },
+        "baseUrl": "src",
+        "paths": {
+            "@/*": ["*"]
+        },
+        "externalHelpers": true
+    },
+    "module": {
+        "type": "commonjs",
+        "ignoreDynamic": true
+    },
+    "sourceMaps": false
+}

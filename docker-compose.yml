@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  discord-gpt-bot:
+    build: .
+    container_name: discord-gpt-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    # use env file or just set in here, as long as it not exposed to the public
+    environment:
+      Prefix:
+      MathPrefix:
+      Token:
+      GoogleAPIKey:
+      GoogleCustomSearchEngineId:
+      OpenAIKey:
