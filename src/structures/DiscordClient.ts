@@ -42,7 +42,7 @@ class DiscordClient extends Client {
   init() {
     this.loadDiscordEvent();
     this.loadSlashCommands();
-    this.loadContextMenuCommands();
+    // this.loadContextMenuCommands();
     this.loadCommands();
   }
 
