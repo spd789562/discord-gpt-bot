@@ -33,7 +33,7 @@ export const talkOption: CommandSubOption = {
       type: ApplicationCommandOptionType.String,
       description: 'Text to ask or chat',
       i18nName: {
-        [Locale.EnglishGB]: 'Text',
+        [Locale.EnglishGB]: 'text',
         [Locale.ChineseTW]: '對話',
       },
       required: true,
@@ -43,7 +43,7 @@ export const talkOption: CommandSubOption = {
       type: ApplicationCommandOptionType.String,
       description: 'use talk personality',
       i18nName: {
-        [Locale.EnglishGB]: 'Personality',
+        [Locale.EnglishGB]: 'personality',
         [Locale.ChineseTW]: '性格選擇',
       },
       required: false,
@@ -55,7 +55,7 @@ export const talkOption: CommandSubOption = {
       description:
         'talk personality setting, only apply when not use personality',
       i18nName: {
-        [Locale.EnglishGB]: 'SystemMessage',
+        [Locale.EnglishGB]: 'setting',
         [Locale.ChineseTW]: '回覆性格',
       },
       required: false,
@@ -80,7 +80,7 @@ export const getTalkSettingOption: CommandSubOption = {
       type: ApplicationCommandOptionType.String,
       description: 'Personality name',
       i18nName: {
-        [Locale.EnglishGB]: 'Name',
+        [Locale.EnglishGB]: 'name',
         [Locale.ChineseTW]: '名稱',
       },
       required: false,
@@ -99,7 +99,7 @@ export const setTalkSettingOption: CommandSubOption = {
       type: ApplicationCommandOptionType.String,
       description: 'Personality name',
       i18nName: {
-        [Locale.EnglishGB]: 'Name',
+        [Locale.EnglishGB]: 'name',
         [Locale.ChineseTW]: '名稱',
       },
       required: true,
@@ -110,7 +110,7 @@ export const setTalkSettingOption: CommandSubOption = {
       type: ApplicationCommandOptionType.String,
       description: 'Personality setting',
       i18nName: {
-        [Locale.EnglishGB]: 'Personality',
+        [Locale.EnglishGB]: 'setting',
         [Locale.ChineseTW]: '回覆性格',
       },
       required: true,
@@ -120,7 +120,7 @@ export const setTalkSettingOption: CommandSubOption = {
       type: ApplicationCommandOptionType.String,
       description: 'Reply Thumbnail, default is none',
       i18nName: {
-        [Locale.EnglishGB]: 'Thumbnail',
+        [Locale.EnglishGB]: 'thumbnail',
         [Locale.ChineseTW]: '頭貼',
       },
       required: false,
@@ -138,7 +138,7 @@ export const imageOption: CommandSubOption = {
       type: ApplicationCommandOptionType.String,
       description: 'the prompt for the image',
       i18nName: {
-        [Locale.EnglishGB]: 'Prompt',
+        [Locale.EnglishGB]: 'prompt',
         [Locale.ChineseTW]: '圖片描述',
       },
       required: true,
@@ -149,14 +149,14 @@ export const imageOption: CommandSubOption = {
       description:
         'Image Size, default is small(256x256) other sizes are medium(512x512) and big(1024x1024)',
       i18nName: {
-        [Locale.EnglishGB]: 'Image Size',
+        [Locale.EnglishGB]: 'size',
         [Locale.ChineseTW]: '圖片大小',
       },
       choices: [
         {
           name: 'small',
           name_localizations: {
-            [Locale.EnglishGB]: 'Small',
+            [Locale.EnglishGB]: 'small',
             [Locale.ChineseTW]: '小',
           },
           value: ImageSize.Small,
@@ -164,7 +164,7 @@ export const imageOption: CommandSubOption = {
         {
           name: 'medium',
           name_localizations: {
-            [Locale.EnglishGB]: 'Medium',
+            [Locale.EnglishGB]: 'medium',
             [Locale.ChineseTW]: '中',
           },
           value: ImageSize.Medium,
@@ -172,7 +172,7 @@ export const imageOption: CommandSubOption = {
         {
           name: 'big',
           name_localizations: {
-            [Locale.EnglishGB]: 'Big',
+            [Locale.EnglishGB]: 'big',
             [Locale.ChineseTW]: '大',
           },
           value: ImageSize.Large,

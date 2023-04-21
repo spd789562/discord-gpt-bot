@@ -17,7 +17,7 @@ export const commandOption: CommandOption = {
       required: true,
       description: 'enter the expression, like 1+1',
       i18nName: {
-        [Locale.EnglishGB]: 'Calc',
+        [Locale.EnglishGB]: 'calc',
         [Locale.ChineseTW]: '算式',
       },
       autocomplete: true,
