@@ -1,14 +1,23 @@
 import * as crypto from 'node:crypto';
 import { keys, find, filter, pathEq } from 'ramda';
 
-interface StoreRecord<Data> {
+export type FindDocument = Record<string, any>;
+export interface StoreRecord<Data> {
   _id: string;
   key: string;
   value: Data;
 }
-type FindDocument = Record<string, any>;
+export interface IStore<Data> {
+  findOne(document: FindDocument): Promise<StoreRecord<Data> | null>;
+  findMany(document: FindDocument): Promise<StoreRecord<Data>[]>;
+  create(document: Omit<StoreRecord<Data>, '_id'>): Promise<void>;
+  updateOne(
+    document: FindDocument,
+    update: Partial<StoreRecord<Data>>
+  ): Promise<void>;
+}
 
-export default class Store<Data> {
+export default class Store<Data> implements IStore<Data> {
   private data: StoreRecord<Data>[] = [];
   async findOne(document: FindDocument) {
     return find(
