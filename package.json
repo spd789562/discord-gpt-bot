@@ -7,7 +7,12 @@
     "build": "swc ./src -d dist"
   },
   "keywords": [
-    "discord", "discord.js-v14", "langchain", "chatgpt", "openai", "googleapis"
+    "discord",
+    "discord.js-v14",
+    "langchain",
+    "chatgpt",
+    "openai",
+    "googleapis"
   ],
   "author": "spd789562",
   "license": "MIT",
@@ -25,7 +30,6 @@
   "dependencies": {
     "chatgpt": "^5.0.7",
     "discord.js": "^14.9.0",
-    "erela.js": "^2.3.3",
     "googleapis": "^109.0.1",
     "langchain": "^0.0.59",
     "mathjs": "^11.5.0",
