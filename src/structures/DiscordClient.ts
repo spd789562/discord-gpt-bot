@@ -42,66 +42,58 @@ class DiscordClient extends Client {
   init() {
     this.loadDiscordEvent();
     this.loadSlashCommands();
-    // this.loadContextMenuCommands();
+    this.loadContextMenuCommands();
     this.loadCommands();
   }
 
+  loadFiles<FileDefaultExport>(dir: string): FileDefaultExport[] {
+    let files: FileDefaultExport[] = [];
+    if (!fs.existsSync(dir)) return files;
+    fs.readdirSync(dir).forEach((folder) => {
+      const subfolder = path.join(dir, folder);
+      const isFolder = fs.lstatSync(subfolder).isDirectory();
+      /* if not folder just add that */
+      if (!isFolder) {
+        const command = require(subfolder).default as FileDefaultExport;
+        files.push(command);
+        return;
+      }
+      // only read two levels folder, so not using recursive
+      fs.readdirSync(subfolder).forEach((file) => {
+        const subfolder = path.join(dir, file);
+        const isFolder = fs.lstatSync(subfolder).isDirectory();
+        if (isFolder) return;
+        const command = require(subfolder)
+          .default as FileDefaultExport;
+        files.push(command);
+      });
+    });
+    return files;
+  }
   loadDiscordEvent() {
-    fs.readdirSync(EventsDir).forEach((file) => {
-      const event = require(path.join(EventsDir, file))
-        .default as ClientEvent<any>;
+    const events = this.loadFiles<ClientEvent<any>>(EventsDir);
+    events.forEach((event) => {
       this.on(event.event, (...args) => {
         event.listener(this, ...args);
       });
     });
   }
   loadSlashCommands() {
-    fs.readdirSync(SlashCommandDir).forEach((folder) => {
-      const subfolder = path.join(SlashCommandDir, folder);
-      const isFolder = fs.lstatSync(subfolder).isDirectory();
-      /* if not folder just add that */
-      if(!isFolder) {
-        const command = require(subfolder).default as MessageCommand;
-        this.commands.set(command.data.name, command);
-        return;
-      } 
-      fs.readdirSync(subfolder).forEach((file) => {
-        const isFolder = fs.lstatSync(path.join(subfolder, file)).isDirectory();
-        if (isFolder) return;
-        const command = require(path.join(subfolder, file))
-          .default as SlashCommand;
-        this.slashs.set(command.data.name, command);
-      });
+    const slashs = this.loadFiles<SlashCommand>(SlashCommandDir);
+    slashs.forEach((slash) => {
+      this.slashs.set(slash.data.name, slash);
     });
   }
   loadCommands() {
-    fs.readdirSync(CommandDir).forEach((folder) => {
-      const subfolder = path.join(CommandDir, folder);
-      const isFolder = fs.lstatSync(subfolder).isDirectory();
-      /* if not folder just add that */
-      if(!isFolder) {
-        const command = require(subfolder).default as MessageCommand;
-        this.commands.set(command.data.name, command);
-        return;
-      } 
-      fs.readdirSync(subfolder).forEach((file) => {
-        const isFolder = fs.lstatSync(path.join(subfolder, file)).isDirectory();
-        if (isFolder) return;
-        const command = require(path.join(subfolder, file))
-          .default as MessageCommand;
-        this.commands.set(command.data.name, command);
-      });
+    const commands = this.loadFiles<MessageCommand>(CommandDir);
+    commands.forEach((command) => {
+      this.commands.set(command.data.name, command);
     });
   }
   loadContextMenuCommands() {
-    fs.readdirSync(ContextMenuCommandDir).forEach((file) => {
-      const isFolder = fs
-        .lstatSync(path.join(ContextMenuCommandDir, file))
-        .isDirectory();
-      if (isFolder) return;
-      const command = require(path.join(ContextMenuCommandDir, file))
-        .default as ContextMenuCommand;
-      this.ctxs.set(command.data.name, command);
+    const ctxs = this.loadFiles<ContextMenuCommand>(ContextMenuCommandDir);
+    ctxs.forEach((ctx) => {
+      this.ctxs.set(ctx.data.name, ctx);
     });
   }
   consistentSetActivity = () => {
