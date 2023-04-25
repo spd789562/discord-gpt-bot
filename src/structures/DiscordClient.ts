@@ -58,6 +58,13 @@ class DiscordClient extends Client {
   loadSlashCommands() {
     fs.readdirSync(SlashCommandDir).forEach((folder) => {
       const subfolder = path.join(SlashCommandDir, folder);
+      const isFolder = fs.lstatSync(subfolder).isDirectory();
+      /* if not folder just add that */
+      if(!isFolder) {
+        const command = require(subfolder).default as MessageCommand;
+        this.commands.set(command.data.name, command);
+        return;
+      } 
       fs.readdirSync(subfolder).forEach((file) => {
         const isFolder = fs.lstatSync(path.join(subfolder, file)).isDirectory();
         if (isFolder) return;
@@ -70,6 +77,13 @@ class DiscordClient extends Client {
   loadCommands() {
     fs.readdirSync(CommandDir).forEach((folder) => {
       const subfolder = path.join(CommandDir, folder);
+      const isFolder = fs.lstatSync(subfolder).isDirectory();
+      /* if not folder just add that */
+      if(!isFolder) {
+        const command = require(subfolder).default as MessageCommand;
+        this.commands.set(command.data.name, command);
+        return;
+      } 
       fs.readdirSync(subfolder).forEach((file) => {
         const isFolder = fs.lstatSync(path.join(subfolder, file)).isDirectory();
         if (isFolder) return;
