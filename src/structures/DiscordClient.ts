@@ -50,20 +50,20 @@ class DiscordClient extends Client {
     let files: FileDefaultExport[] = [];
     if (!fs.existsSync(dir)) return files;
     fs.readdirSync(dir).forEach((folder) => {
-      const subfolder = path.join(dir, folder);
-      const isFolder = fs.lstatSync(subfolder).isDirectory();
+      const subFolder = path.join(dir, folder);
+      const isFolder = fs.lstatSync(subFolder).isDirectory();
       /* if not folder just add that */
       if (!isFolder) {
-        const command = require(subfolder).default as FileDefaultExport;
+        const command = require(subFolder).default as FileDefaultExport;
         files.push(command);
         return;
       }
       // only read two levels folder, so not using recursive
-      fs.readdirSync(subfolder).forEach((file) => {
-        const subfolder = path.join(dir, file);
-        const isFolder = fs.lstatSync(subfolder).isDirectory();
+      fs.readdirSync(subFolder).forEach((file) => {
+        const thirdFolder = path.join(subFolder, file);
+        const isFolder = fs.lstatSync(thirdFolder).isDirectory();
         if (isFolder) return;
-        const command = require(subfolder)
+        const command = require(thirdFolder)
           .default as FileDefaultExport;
         files.push(command);
       });
