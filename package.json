@@ -31,7 +31,7 @@
     "chatgpt": "^5.0.7",
     "discord.js": "^14.9.0",
     "googleapis": "^109.0.1",
-    "langchain": "^0.0.59",
+    "langchain": "^0.0.68",
     "mathjs": "^11.5.0",
     "openai": "^3.1.0",
     "ramda": "^0.28.0"

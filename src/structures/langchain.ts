@@ -81,7 +81,7 @@ class LangChainChatGPTAPI {
   createChatPrompt(systemMessage: string) {
     const prompt = ZeroShotAgent.createPrompt(this.tools, {
       prefix: `${systemMessage}, You have access to the following tools:`,
-      suffix: `remember your personality, only useing tools while needed. always use the exact characters \`Final Answer\` when responding.`,
+      suffix: `remember your personality, only using tools while needed. always use the exact characters \`Final Answer\` when responding.`,
     });
     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
       new SystemMessagePromptTemplate(prompt),
@@ -96,7 +96,7 @@ class LangChainChatGPTAPI {
   createModel(onProgress: onProgress) {
     let _text = '';
     const callbackManager = CallbackManager.fromHandlers({
-      async handleLLMNewToken(token: string, verbose: boolean) {
+      async handleLLMNewToken(token) {
         _text += token;
         if (_text.includes('Final Answer: ')) {
           const text = _text.split('Final Answer: ')[1];
